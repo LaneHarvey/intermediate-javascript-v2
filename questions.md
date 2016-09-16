@@ -34,7 +34,7 @@
  Which function(s) access the ceiling variable and get undefined (Delete wrong answers, leave correct ones)
 `var scopeArray3 = ["street", "firstFloor", "secondFloor", "neighbors", "neighborsSecondFloor"];`
 
- Which functions accesss the ceiling variable and get "leaking" (Delete wrong answers, leave correct ones)
+ Which functions access the ceiling variable and get "leaking" (Delete wrong answers, leave correct ones)
 `var scopeArray4 = ["street", "firstFloor", "secondFloor", "neighbors", "neighborsSecondFloor"];`
 
  Which functions access the temperature variable and get 72 (Delete wrong answers, leave correct ones)
