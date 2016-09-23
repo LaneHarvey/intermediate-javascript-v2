@@ -43,28 +43,37 @@ var scopeArray5 = ['secondFloor'];
 
 // #2  ###################
 // # Promises
-var foo = false;
+var changed = false;
 /* Write a function called async.
   Use $q to create a promise object and return the promise.
   Call setTimeout on a function
   which changes the variable changed (above) to the boolean true;
   And resolve the promise when setTimeout completes.
 */
-var async = function(foo){
-  return $q(function(resolve){
-    setTimeout(function(){
-    foo = true
-  })
-  });
-}
-var promise = async();
-promise.then(function(){
-  resolve(promise)
-});
 
+
+var async = function(){
+  var deferred = $q.defer();
+
+setTimeout(function(){
+  deferred.resolve(changed = true);
+})
+
+return deferred.promise;
+}
+
+async().then(function(res){
+  console.log(res)
+})
+
+
+
+
+
+///////////////
 var contextObj = {
   number: 0
-}
+};
 
 function sum(x, y) {
   return this.number += (x + y);
@@ -78,7 +87,7 @@ function sum(x, y) {
 
 var context1 =  function(x,y){
     return sum.call(contextObj,x,y);
-  }
+  };
 
 // #4 ####################
 // # Context 2
@@ -87,8 +96,8 @@ var context1 =  function(x,y){
 //
 
 var context2 = function(params){
-  return sum.apply(contextObj,params)
-}
+  return sum.apply(contextObj,params);
+};
 
 
 // #5 ####################
@@ -98,8 +107,8 @@ var context2 = function(params){
 // This should give you a new function. Return it.
 
 var context3 = function(){
-  return sum.bind(contextObj)
-}
+  return sum.bind(contextObj);
+};
 
 // #6  ###################
 // # Constructor Function
@@ -121,7 +130,7 @@ function RoadTrip(){
   this.gasLeft = 100;
   this.drive = function(){
     this.gasLeft-=  10;
-  }
+  };
 }
 
 
@@ -134,8 +143,8 @@ Array.prototype.addTwo = function(){
   for (var i = 0; i < this.length; i++) {
     this[i] = this[i] + 2;
   }
-  return this
-}
+  return this;
+};
 
 
 // #9  ###################
@@ -147,7 +156,7 @@ function CoinToss(){
   this.results = [];
   this.flip = function(){
     this.results = ['heads', 'tails'];
-  }
+  };
 }
 
 
@@ -159,8 +168,8 @@ function CoinToss(){
 function animalMachine(partOne){
   animalSmasher = function(partTwo){
     return partOne + partTwo;
-  }
-  return animalSmasher
+  };
+  return animalSmasher;
 }
 
 // #11  ###################
@@ -179,9 +188,9 @@ function animalMachine(partOne){
 function partyTime(partyName){
   var guestList = [];
   addGuest = function(guestList){
-      return {partyName:partyName, guestList:[guestList]}
-    }
-  return addGuest
+      return {partyName:partyName, guestList:[guestList]};
+    };
+  return addGuest;
 }
 
 
@@ -193,13 +202,25 @@ function partyTime(partyName){
 // Otherwise return "Different values"
 
 function compareValues(a,b){
-if ((a === b) && (a.key === b.key)){
-        return "Exact match"
-      }
-      else if (!(a === b) && (a.key === b.key)){
-        return "Different types"
-      }
-      else {
-        return "Different values"
-      }
+  // var compares = [];
+  // for (var i = 0; i < a.length; i++) {
+  //   return a[i];
+  // }
+  // for (var j = 0; j < b.length; j++) {
+  //   return b[i];
+  // var typeOfA = typeof a;
+  // var typeOfB = typeof b;
+  // }
+// console.log(a, b);
+  if ( a ===  b){
+    return "Exact match";
+  }
+   else if( a == b){
+    //  console.log(toString(a))
+      return "Different types";
+    }
+  else {
+    return "Different values";
+  }
+
 }
